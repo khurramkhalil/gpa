@@ -1,0 +1,78 @@
+# Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment directories
+venv/
+env/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IDE specific files (VS Code, PyCharm, etc.)
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# PyTorch model files (large files, can be downloaded or re-generated)
+*.pt
+*.pth
+*.pkl
+*.h5
+
+# Training logs (if you log training progress)
+*.log
+
+# Cache files created by pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Environment variable files (for secrets, tokens, API keys, etc.)
+.env
+.env.local
+config/secrets.json
+
+# Data directories (if you use local copies of datasets that shouldn't be versioned)
+data/
+datasets/
+
+# Generated model weights and checkpoints (specific to training)
+checkpoint/
+models/
+
+# Temporary files
+*.swp       # Vim swap files
+*~          # Vim backup files
+
+# Operating system files
+.DS_Store   # macOS
+Thumbs.db   # Windows
+
+# Exclude generated plots or outputs (images, PDFs, etc.)
+*.png
+*.jpg
+*.jpeg
+*.pdf
+
+# Coverage reports (for unit tests)
+coverage/
+*.coveragerc
+
+# Pytest or other test framework directories
+nosetests.xml
+*.cover
+*.hypothesis/
+
+# Ignore any temporary files or directories created by other processes
+tmp/
+temp/
+
+# Ignore W&B tracking files and directories
+wandb/
+
+# Optionally ignore W&B configuration files
+.wandb/
