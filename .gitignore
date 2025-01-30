@@ -37,12 +37,12 @@ pip-delete-this-directory.txt
 config/secrets.json
 
 # Data directories (if you use local copies of datasets that shouldn't be versioned)
-data/
 datasets/
 
 # Generated model weights and checkpoints (specific to training)
 checkpoint/
 models/
+data/
 
 # Temporary files
 *.swp       # Vim swap files
