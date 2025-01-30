@@ -7,7 +7,11 @@ from torch.utils.data import DataLoader
 from typing import Dict
 from tqdm import tqdm
 
-def train_epoch(model, dataloader, criterion, optimizer, device):
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+def train_epoch(model, dataloader, criterion, optimizer, scheduler, device):
     model.train()
     total_loss = 0
     epoch_start_time = time.time()
@@ -18,8 +22,13 @@ def train_epoch(model, dataloader, criterion, optimizer, device):
         optimizer.zero_grad()
         outputs = model(tokens)
         loss = criterion(outputs, labels)
+
+        # Gradient clipping
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
+
         loss.backward()
         optimizer.step()
+        scheduler.step()
         
         total_loss += loss.item()
         
@@ -65,3 +74,27 @@ def evaluate(model: nn.Module,
         'loss': total_loss / len(dataloader),
         'accuracy': 100. * correct / total
     }
+
+def plot_confusion_matrix(model, dataloader, device, class_names):
+    model.eval()
+    all_preds = []
+    all_labels = []
+    
+    with torch.no_grad():
+        for tokens, labels in dataloader:
+            tokens, labels = tokens.to(device), labels.to(device)
+            outputs = model(tokens)
+            _, preds = outputs.max(1)
+            
+            all_preds.extend(preds.cpu().numpy())
+            all_labels.extend(labels.cpu().numpy())
+    
+    cm = confusion_matrix(all_labels, all_preds)
+    plt.figure(figsize=(15, 15))
+    sns.heatmap(cm, annot=True, fmt='d', xticklabels=class_names, 
+                yticklabels=class_names)
+    plt.title('Confusion Matrix')
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+    
+    return plt

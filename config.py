@@ -2,27 +2,28 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
+    # Dataset parameters
+    dataset: str = 'amazonreviews'
+
     # Model parameters
     dim: int = 256
     num_heads: int = 8
     num_layers: int = 4
-    max_seq_len: int = 128
+    max_seq_len: int = 256  # Reduced from 512
     
     # Training parameters
-    batch_size: int = 128
-    num_epochs: int = 50
-    learning_rate: float = 3e-4
+    batch_size: int = 512
+    num_epochs: int = 256
+    learning_rate: float = 1e-4
+    weight_decay: float = 0.001
+    warmup_steps: int = 1000
+    dropout: float = 0.2
+    gradient_clip: float = 1.0
     
     # Tokenizer parameters
     min_freq: int = 2
-    max_tokens: int = 20000
-
-    # Attention mechanis,
+    max_tokens: int = 30000
+    
+    # Attention mechanism
     attention: str = 'gpa'
-
-    # Efficient GPA parameters
-    num_clusters: int = 32
-    min_points_per_centroid: int = 8
-
-    # Can be tuned based on sequence length
-    num_landmarks: int = 16
+    num_landmarks: int = 4

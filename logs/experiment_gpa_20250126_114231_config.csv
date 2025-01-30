@@ -1,0 +1,2 @@
+dataset,dim,num_heads,num_layers,max_seq_len,batch_size,num_epochs,learning_rate,weight_decay,warmup_steps,dropout,gradient_clip,min_freq,max_tokens,attention,num_landmarks
+20newsgroups,256,8,4,256,512,512,0.0001,0.001,1000,0.2,1.0,2,30000,gpa,1

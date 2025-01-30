@@ -1,0 +1,2 @@
+timestamp,epoch,train_loss,test_loss,test_accuracy,learning_rate,epoch_time,memory_used_gb,is_best_model,block_0_precision_level,block_0_attention_entropy,block_1_precision_level,block_1_attention_entropy,block_2_precision_level,block_2_attention_entropy,block_3_precision_level,block_3_attention_entropy
+2025-01-27 12:34:21,0,1.9013991211258103,1.7528762809873566,41.705230769230766,4.000000000000002e-06,1765.5925645828247,6.080807209014893,True,0,0,0,0,0,0,0,0
